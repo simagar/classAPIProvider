@@ -1,13 +1,13 @@
-import type {AxiosInstance} from "axios";
-import type {IApiProvider} from "@/models/IApiProvider";
+import type { $Fetch } from "ofetch";
+import type { IApiProvider } from "@/models/IApiProvider";
 import ExampleService from "@/services/ExampleService";
 
 export default defineNuxtPlugin((nuxtApp) => {
-    const axios = nuxtApp.$axios! as AxiosInstance;
-    const api: IApiProvider = {
-        example: new ExampleService(axios),
-    };
-    return {
-        provide: {api: api},
-    };
+  const httpClient = nuxtApp.$fetch! as $Fetch;
+  const api: IApiProvider = {
+    example: new ExampleService(httpClient),
+  };
+  return {
+    provide: { api: api },
+  };
 });
